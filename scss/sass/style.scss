@@ -1,0 +1,96 @@
+@import "reset";
+@import "mixins/font-face"
+@import "mixins/font-scaling";
+@import "mixins/helper";
+
+$color1-1: #000;
+$color1-1: #000;
+$color1-2: #000;
+$color1-3: #000;
+
+$font-primary:  sans-serif;
+$font-second:  serif;
+$font-size: 20;
+$font-size-min: 16;
+
+$breakpoint-first: 500px;
+$breakpoint-second: 722px;
+$breakpoint-third: 900px;
+$breakpoint-fourth: 1200px;
+
+$animation1: ease-in-out;
+
+
+
+body {
+  font-family: $font-primary;
+  font-size: #{$font-size}px;
+  font-size: calc( #{$font-size-min}px + (#{$font-size} - #{$font-size-min}) * (100vw - 270px) / (1200 - 270) );
+  line-height: 1.54;
+  color: $color1-2;
+}
+
+a {
+  color: $color1-2;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-2;
+  font-weight: bold;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+  line-height: 1;
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+h1 {
+  font-size: 2.2em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+strong,b {
+  font-weight: bold;
+}
+em, i {
+  font-style: italic;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: upper-roman;
+}
+
+blockquote {
+  padding-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.text-hide {
+  @include invisible;
+}
+
+
+.btn {
+  display: inline-block;
+  background-color: $color1-1;
+  color: #fff;
+  text-decoration: none;
+}
+
+@import "scroll-up";
+@import "contao-elemente";
+@import "navigation";
+@import "lightbox";
+
+

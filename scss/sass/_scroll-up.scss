@@ -1,0 +1,51 @@
+.back-to-top {
+  border-radius: 50%;
+  display: block;
+  pointer-events: auto;
+  position: fixed;
+  bottom: 5em;
+  right: 1em;
+  height: 2.9em;
+  width: 2.9em;
+  padding: 1em;
+  color: #fff;
+  //background: $color1-1 url("../img/icons/arrow-up-white.svg") center center no-repeat;
+  background-size: 1em;
+
+
+  transition: transform 0.2s ease-in-out;
+  transform: scale(0);
+  border: none;
+  z-index: 1000;
+}
+
+@media(min-width: $breakpoint-second) {
+  .back-to-top {
+    bottom: 1rem;
+  }
+}
+
+
+.back-to-top:active,
+.back-to-top:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.back-to-top.fade-in {
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.icon-arrow-up {
+  width: 0.9285692870616913em;
+}

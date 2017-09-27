@@ -1,0 +1,108 @@
+/* float zeug */
+
+.float_left,
+.float_right {
+  float: none;
+  margin: 0px;
+  margin-bottom: 2em;
+}
+
+.image_container {
+  margin-top: 0.5em;
+}
+
+@media(min-width: $breakpoint-first) {
+  .float_left {
+    float: left;
+    margin-right: 2em;
+    margin-bottom: 2em;
+  }
+
+  .float_right {
+    float: right;
+    margin-left: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+@media(min-width: $breakpoint-second) {
+  .float_left,
+  .float_right {
+    float: none;
+  }
+}
+
+@media(min-width: $breakpoint-third) {
+  .float_left {
+    float: left;
+  }
+  .float_right {
+    float: right;
+  }
+}
+
+
+/* artikel */
+
+.mod_article {
+  padding: 1em;
+  padding-right: 1.5em;
+}
+
+
+@media(min-width: $breakpoint-second) {
+  .mod_article {
+    width: 70%;
+    margin: 0 auto;
+    .block {
+      hyphens: auto;
+      margin-bottom: 3em;
+    }
+
+  }
+}
+
+.mod_article {
+  a {
+    font-weight: bold;
+  }
+
+  ol,
+  ul {
+    padding-left: 2em;
+    // braucht der IE EDGE sonst floaten die anstriche nicht
+    overflow: hidden;
+  }
+  p {
+    margin-bottom: 0.8em;
+  }
+}
+
+.mod_newslist > .block > .more,
+.mod_article > .block {
+  clear: both;
+}
+
+.mod_newslist > .block::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.mod_newslist {
+  h1,h2,h3,h4,h5,h6 {
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.caption {
+  font-size: 0.7em;
+  hyphens: auto;
+}
+
+
+.invisible {
+  @include invisible;
+}
