@@ -1,5 +1,5 @@
 @import "reset";
-@import "mixins/font-face"
+@import "mixins/font-face";
 @import "mixins/font-scaling";
 @import "mixins/helper";
 
@@ -35,7 +35,7 @@ a {
 }
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: $font-2;
+  font-family: $font-second;
   font-weight: bold;
   margin-top: 0.5em;
   margin-bottom: 0.8em;
