@@ -1,4 +1,4 @@
-          require 'compass/import-once/activate'
+    #      require 'compass/import-once/activate'
           require 'autoprefixer-rails'
           require File.join(File.dirname(__FILE__), 'base64-sass.rb')
 

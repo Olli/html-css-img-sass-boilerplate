@@ -3,7 +3,7 @@
             # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
 
             guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
-              watch(%r{scss/.*.scss$})
+              watch(%r{scss\/(.+)\.scss$})
             end
 
 
@@ -15,6 +15,7 @@
                 # Of these :scp is the preferred one for
                 # its stability.
                 protocol: :ftp,
+                ssl: true,
 
 
                 host: "ftp.example.net",
