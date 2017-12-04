@@ -26,6 +26,8 @@ body {
   font-family: $font-primary;
   font-size: #{$font-size}px;
   font-size: calc( #{$font-size-min}px + (#{$font-size} - #{$font-size-min}) * (100vw - 270px) / (1200 - 270) );
+  // https://font-display.glitch.me/
+  font-display:optional;
   line-height: 1.54;
   color: $color1-2;
 }
@@ -92,5 +94,3 @@ blockquote {
 @import "contao-elemente";
 @import "navigation";
 @import "lightbox";
-
-
