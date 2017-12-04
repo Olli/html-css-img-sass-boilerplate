@@ -39,6 +39,8 @@
 		font-family: quote($name);
 		font-style: $style;
 		font-weight: $weight;
+		// https://font-display.glitch.me/
+		font-display:optional;
 		src: $src;
 	}
 }
