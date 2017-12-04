@@ -20,3 +20,14 @@ guard
 
 That's it!
 Guestions? → Open a new issue
+
+
+## TODO
+
+- Add a solution for the JS scripts like Webpack
+
+
+
+## Links to consider while being Webdesigner
+
+https://frontendchecklist.io/
