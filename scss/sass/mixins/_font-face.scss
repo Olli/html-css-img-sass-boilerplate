@@ -16,7 +16,7 @@
 // Font Face
 // =============================================================================
 
-@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg, $localfonts: true) {
 	$src: null;
 
 	$extmods: (
@@ -28,7 +28,9 @@
 		otf: "opentype",
 		ttf: "truetype"
 	);
-	$src: append($src, local("#{quote($name)}"),comma);
+	@if $localfonts {
+		$src: append($src,  local("#{quote($name)}"),comma);
+	}
 	@each $ext in $exts {
 		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
 		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
@@ -39,8 +41,7 @@
 		font-family: quote($name);
 		font-style: $style;
 		font-weight: $weight;
-		// https://font-display.glitch.me/
-		font-display:optional;
+		font-display: optional;
 		src: $src;
 	}
 }
