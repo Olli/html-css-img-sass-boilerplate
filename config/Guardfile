@@ -67,3 +67,5 @@
                       %r{__jb_old__}, %r{__jb_bak__}  # ruby idea ingores
                      ]
             end
+            guard :webpack, colors: true, config: './config/webpack/development.config.js'
+	    #guard :webpack, colors: false, config: './config/webpack/production.config.js'

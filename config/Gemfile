@@ -8,3 +8,5 @@ source 'http://rubygems.org'
        gem 'scss_lint'
        gem 'net-ssh'
        gem 'guard-sass'
+       gem 'guard-webpack'
+
