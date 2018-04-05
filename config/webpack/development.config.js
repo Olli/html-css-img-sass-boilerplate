@@ -1,13 +1,15 @@
-
+const path = require('path');
 module.exports = {
+  mode: 'development',
   entry: {
     myScripts: './js-packs/script.js'
   },
 
   output: {
-    filename: './js/script.js'
+    filename: 'script.js',
+    path:  path.resolve(__dirname, '../../js')
   },
-  mode: 'development',
   devtool: "cheap-module-source-map", // inlines SourceMap per module
-  plugins: []
+  plugins: [],
+
 };
