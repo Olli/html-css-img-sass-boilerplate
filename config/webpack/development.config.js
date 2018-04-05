@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: './js/script.js'
   },
+  mode: 'development',
   devtool: "cheap-module-source-map", // inlines SourceMap per module
   plugins: []
 };

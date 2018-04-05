@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: './js/script.js'
   },
-
+  mode: 'production',
   plugins: [
     new UglifyJsPlugin({
 
