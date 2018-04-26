@@ -1,5 +1,5 @@
             require 'autoprefixer-rails'
-            require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
+            #require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
 
             # Like usual, the Compass configuration path are relative to the :project_path
             # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
@@ -7,28 +7,50 @@
             #guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
             #  watch(%r{scss\/(.+)\.scss$})
             #end
-            guard :sass, input: 'scss/sass', output: 'css', smart_partials: true, shallow: true do
-              callback(:run_on_changes_end) do |_, _, files|
-                Array(files).each do |file|
-                  time = Benchmark.realtime { do_autoprefix(file) }
-                  benchmark = "[\e[33m%2.2fs\e[0m] " % time
-                  ::Guard::UI.info("\t\e[1;37mAutoprefixer\e[0m %s%s" % [benchmark, file])
-                end
+            # you have to install sassc
+            guard :shell do
+              watch(%r{scss\/(.+)\.scss$}) do |file|
+                `sassc -l scss/sass/style.scss cssstyle.css` #extended css at the end ... need to be compressed in production
+                do_autoprefix("cssstyle.css","css/style.css")
               end
             end
 
-            def do_autoprefix(file)
-              css = File.read(file)
-              cssfile = File.dirname(file) + File.basename(file)
-              File.open(cssfile, 'w') { |io| io << AutoprefixerRails.process(css,
+            def do_autoprefix(infile,outfile)
+              incss = File.read(infile)
+              #cssfile = File.dirname(file) + File.basename(file)
+              File.open(outfile, 'w') { |io| io << AutoprefixerRails.process(incss,
                                                                              browsers: ['> 1%', 'ie 10', 'last 2 version'],
                                                                              supports: false,
                                                                              grid: false) }
 
 
-              system( "echo 'Autoprefixer has processed " + cssfile + "'" )
+              system( "echo 'Autoprefixer has processed " + infile + "'" )
 
             end
+
+
+            # guard :sass, input: 'scss/sass', output: 'css', smart_partials: true, shallow: true do
+            #   callback(:run_on_changes_end) do |_, _, files|
+            #     Array(files).each do |file|
+            #       time = Benchmark.realtime { do_autoprefix(file) }
+            #       benchmark = "[\e[33m%2.2fs\e[0m] " % time
+            #       ::Guard::UI.info("\t\e[1;37mAutoprefixer\e[0m %s%s" % [benchmark, file])
+            #     end
+            #   end
+            # end
+            #
+            # def do_autoprefix(file)
+            #   css = File.read(file)
+            #   cssfile = File.dirname(file) + File.basename(file)
+            #   File.open(cssfile, 'w') { |io| io << AutoprefixerRails.process(css,
+            #                                                                  browsers: ['> 1%', 'ie 10', 'last 2 version'],
+            #                                                                  supports: false,
+            #                                                                  grid: false) }
+            #
+            #
+            #   system( "echo 'Autoprefixer has processed " + cssfile + "'" )
+            #
+            # end
 
             # Configuartion Options for guard-autoupload
 
@@ -62,6 +84,7 @@
                       %r{^.sass-cache},
                       %r{^config},
                       %r{^.idea},
+                      %r{cssstyle.css}, # tempfile
                       %r{^Guardfile}, #ignore the root guardfile
                       %r{^Gemfile}, #ignore the root guardfile
                       %r{__jb_old__}, %r{__jb_bak__}  # ruby idea ingores

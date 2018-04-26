@@ -1,12 +1,8 @@
 source 'http://rubygems.org'
        gem 'guard'
        gem 'guard-autoupload'
-       gem 'guard-compass'
        gem 'autoprefixer-rails'
-       gem 'compass'
        gem 'libnotify'
-       gem 'scss_lint'
        gem 'net-ssh'
-       gem 'guard-sass'
        gem 'guard-webpack'
-
+       gem 'guard-shell'
