@@ -18,8 +18,13 @@ $breakpoint-second: 30em; //722px;
 $breakpoint-third: 40em; //900px;
 $breakpoint-fourth: 50em; //1200px;
 
-$animation1: ease-in-out;
 
+:root {
+  --animation-function-in: ease-in-out;
+  --animation-function-out: ease-in-out;
+  --animation-function-opacity-in: ease-in-out;
+  --animation-function-opacity-out: ease-in-out;
+}
 
 
 body {
