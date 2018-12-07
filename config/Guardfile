@@ -57,13 +57,10 @@
             guard :autoupload, opts do
               watch(/^\.upload\/(css|img|fonts|js)./)
               ignore [#%r{^scss}, # sonst geht der upload nicht
-                      %r{^.sass-cache},
                       %r{^config},
-                      %r{^.idea},
-                      %r{cssstyle.css}, # tempfile
+                      %r{^.gitkeep},
                       %r{^Guardfile}, #ignore the root guardfile
                       %r{^Gemfile}, #ignore the root guardfile
-                      %r{__jb_old__}, %r{__jb_bak__}  # ruby idea ingores
                      ]
             end
             guard :webpack, colors: true, config: './config/webpack/development.config.js'
