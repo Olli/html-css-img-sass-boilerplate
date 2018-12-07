@@ -10,8 +10,8 @@
             # you have to install sassc
             guard :shell do
               watch(%r{scss\/(.+)\.scss$}) do |file|
-                `sassc -l scss/sass/style.scss cssstyle.css` #extended css at the end ... need to be compressed in production
-                do_autoprefix("cssstyle.css","css/style.css")
+                `sassc -l scss/sass/style.scss .tmp/cssstyle.css` #extended css at the end ... need to be compressed in production
+                do_autoprefix(".tmp/cssstyle.css",".upload/css/style.css")
               end
             end
 
@@ -29,31 +29,6 @@
             end
 
 
-            # guard :sass, input: 'scss/sass', output: 'css', smart_partials: true, shallow: true do
-            #   callback(:run_on_changes_end) do |_, _, files|
-            #     Array(files).each do |file|
-            #       time = Benchmark.realtime { do_autoprefix(file) }
-            #       benchmark = "[\e[33m%2.2fs\e[0m] " % time
-            #       ::Guard::UI.info("\t\e[1;37mAutoprefixer\e[0m %s%s" % [benchmark, file])
-            #     end
-            #   end
-            # end
-            #
-            # def do_autoprefix(file)
-            #   css = File.read(file)
-            #   cssfile = File.dirname(file) + File.basename(file)
-            #   File.open(cssfile, 'w') { |io| io << AutoprefixerRails.process(css,
-            #                                                                  browsers: ['> 1%', 'ie 10', 'last 2 version'],
-            #                                                                  supports: false,
-            #                                                                  grid: false) }
-            #
-            #
-            #   system( "echo 'Autoprefixer has processed " + cssfile + "'" )
-            #
-            # end
-
-            # Configuartion Options for guard-autoupload
-
             opts = {
                 # Protocol used to connect to remote host.
                 # Possible values are :scp, :sftp and :ftp.
@@ -70,6 +45,7 @@
 
                 user: "",
                 password: "",
+                local: ".upload",
 
                 remote: "serverpath/files/template",
 
@@ -79,7 +55,7 @@
             }
 
             guard :autoupload, opts do
-              watch(/^(css|img|fonts|js)./)
+              watch(/^\.upload\/(css|img|fonts|js)./)
               ignore [#%r{^scss}, # sonst geht der upload nicht
                       %r{^.sass-cache},
                       %r{^config},

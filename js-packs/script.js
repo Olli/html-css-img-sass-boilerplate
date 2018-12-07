@@ -3,14 +3,25 @@ import { scrollTo } from './scrollTo.js';
 import { toggleClass } from './mobileNavigation.js';
 
 
+var isIE = /*@cc_on!@*/false || !!document.documentMode
 
 
 
 
 document.addEventListener("DOMContentLoaded", function(){
   'use strict';
-  toggleClass('.nav-trigger.nav-open-trigger','.nav-open .nav-trigger');
-
+  if(!isIE){
+    toggleClass('.nav-trigger.nav-open-trigger','.nav-open .nav-trigger');
+  }
+  // load ie11 css vars polyfill
+  if(isIE) {
+     var s = document.createElement('script');
+     s.onload = function() {
+       cssVars();
+     }
+     s.src = 'https://unpkg.com/css-vars-ponyfill@1';
+     document.getElementsByTagName('head')[0].appendChild(s);
+  }
 });
 
 
@@ -65,18 +76,20 @@ document.addEventListener("DOMContentLoaded", function(){
     var target = document.querySelector('#header:not(.fixed-top)');
     observer.observe(target);
 */
-    document.querySelector('.back-to-top').addEventListener('click',function(event){
-        event.preventDefault();
-        scrollTo(document.querySelector('html,body'),800,'easeInOutQuad');
-    });
-
-    document.querySelectorAll(".person_item").forEach(function(personItem) {
-      personItem.addEventListener('click',function(event){
-        event.preventDefault();
-        event.currentTarget.classList.toggle("show-info");
-        event.currentTarget.parentNode.classList.toggle("info-shown");
+    if(!isIE) {
+      document.querySelector('.back-to-top').addEventListener('click',function(event){
+          event.preventDefault();
+          scrollTo(document.querySelector('html,body'),800,'easeInOutQuad');
       });
-    });
+
+      document.querySelectorAll(".person_item").forEach(function(personItem) {
+        personItem.addEventListener('click',function(event){
+          event.preventDefault();
+          event.currentTarget.classList.toggle("show-info");
+          event.currentTarget.parentNode.classList.toggle("info-shown");
+        });
+      });
+    }
 
 
 
