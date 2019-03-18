@@ -8,13 +8,13 @@
  * @param {function} callback - Optional callback invoked after animation
  */
 export function scrollTo(destination) {
-  var duration = arguments.length <= 1 || arguments[1] === undefined ? 200 : arguments[1];
-  var easing = arguments.length <= 2 || arguments[2] === undefined ? 'linear' : arguments[2];
-  var callback = arguments[3];
+  let duration = arguments.length <= 1 || arguments[1] === undefined ? 200 : arguments[1];
+  let easing = arguments.length <= 2 || arguments[2] === undefined ? 'linear' : arguments[2];
+  let callback = arguments[3];
   // Predefine list of available timing functions
   // If you need more, tween js is full of great examples
   // https://github.com/tweenjs/tween.js/blob/master/src/Tween.js#L421-L737
-  var easings = {
+  let easings = {
     linear: function linear(t) {
       return t;
     },
@@ -59,17 +59,17 @@ export function scrollTo(destination) {
   // Store initial position of a window and time
   // If performance is not available in your browser
   // It will fallback to new Date().getTime() - thanks IE < 10
-  var start = window.pageYOffset;
-  var startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+  let start = window.pageYOffset;
+  let startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
   // const startTime = typeof(window.performance['now']) == 'function' ? performance.now() : new Date().getTime();
 
   // Take height of window and document to sesolve max scrollable value
   // Prevent requestAnimationFrame() from scrolling below maximum scollable value
   // Resolve destination type (node or number)
-  var documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-  var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
-  var destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
-  var destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
+  let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+  let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+  let destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
+  let destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
 
   // If requestAnimationFrame is not supported
   // Move window to destination position and trigger callback function
@@ -84,9 +84,9 @@ export function scrollTo(destination) {
   // function resolves position of a window and moves to exact amount of pixels
   // Resolved by calculating delta and timing function choosen by user
   function scroll() {
-    var now = 'now' in window.performance ? performance.now() : new Date().getTime();
-    var time = Math.min(1, (now - startTime) / duration);
-    var timeFunction = easings[easing](time);
+    let now = 'now' in window.performance ? performance.now() : new Date().getTime();
+    let time = Math.min(1, (now - startTime) / duration);
+    let timeFunction = easings[easing](time);
     window.scroll(0, Math.ceil(timeFunction * (destinationOffsetToScroll - start) + start));
 
     // Stop requesting animation when window reached its destination
