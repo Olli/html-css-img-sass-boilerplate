@@ -4,24 +4,24 @@
 .float_right {
   float: none;
   margin: 0px;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 .image_container {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 
 @media(min-width: $breakpoint-first) {
   .float_left {
     float: left;
-    margin-right: 2em;
-    margin-bottom: 2em;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
   }
 
   .float_right {
     float: right;
-    margin-left: 2em;
-    margin-bottom: 2em;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -45,8 +45,8 @@
 /* artikel */
 
 .mod_article {
-  padding: 1em;
-  padding-right: 1.5em;
+  padding: 1rem;
+  padding-right: 1.5rem;
 }
 
 
@@ -55,7 +55,7 @@
     margin: 0 auto;
     .block {
       hyphens: auto;
-      margin-bottom: 3em;
+      margin-bottom: 3rem;
     }
 
   }
@@ -68,12 +68,12 @@
 
   ol,
   ul {
-    padding-left: 2em;
+    padding-left: 2rem;
     // braucht der IE EDGE sonst floaten die anstriche nicht
     overflow: hidden;
   }
   p {
-    margin-bottom: 0.8em;
+    margin-bottom: 0.8rem;
   }
 }
 
