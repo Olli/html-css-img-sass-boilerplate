@@ -7,18 +7,23 @@ export function initScrollUpBtn() {
     let isIE = /*@cc_on!@*/false || !!document.documentMode
 
     // Der Button wird mit JavaScript erzeugt und vor dem Ende des body eingebunden.
-    const back_to_top_button = ['<a href="#top" class="no-btn back-to-top trigger-btn">\
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 10a10 10 0 1 1 20 0 10 10 0 0 1-20 0zm10 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm.7-10.54L14.25 11l-1.41 1.41L10 9.6l-2.83 2.8L5.76 11 10 6.76l.7.7z"/></svg>\
-                                  <span class="invisible">Nach oben</span></a>'].join("");
 
-    document.body.innerHTML = document.body.innerHTML + back_to_top_button;
-
+    let button = document.createElement('a');
+    button.setAttribute('href','#');
+    button.setAttribute('class','no-btn back-to-top trigger-btn');
+    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 10a10 10 0 1 1 20 0 10 10 0 0 1-20 0zm10 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm.7-10.54L14.25 11l-1.41 1.41L10 9.6l-2.83 2.8L5.76 11 10 6.76l.7.7z"/></svg>\
+                                  <span class="invisible">Nach oben</span>';
+    document.getElementsByTagName('body')[0].appendChild(button);
+    
     if (
       "IntersectionObserver" in window &&
       "IntersectionObserverEntry" in window &&
       "intersectionRatio" in window.IntersectionObserverEntry.prototype
     ) {
       console.debug("intersection observer ");
+      const observeable = document.createElement("span");
+      observeable.id = "observeable";
+      document.getElementById("header").parentNode.insertBefore(observeable,document.getElementById("header"));
 
       let observer = new IntersectionObserver(entries => {
         if (entries[0].boundingClientRect.y < 0) {

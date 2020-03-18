@@ -45,8 +45,8 @@
 /* artikel */
 
 .mod_article {
-  padding: 1em;
-  padding-right: 1.5em;
+  padding: calc(var(--lh-factor) * 1rem) 1ch ;
+  padding-right: 1.5ch;
 }
 
 
@@ -55,7 +55,7 @@
     margin: 0 auto;
     .block {
       hyphens: auto;
-      margin-bottom: 3em;
+      margin-bottom: calc(var(--lh-factor) * 3rem);
     }
 
   }
