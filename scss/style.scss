@@ -4,10 +4,47 @@
 @import "mixins/helper";
 @import "animations";
 
-$color1-1: #000;
-$color1-2: #000;
-$color1-3: #000;
-$color1-4: #000;
+
+$color1-1: #000000;
+$color1-2: #000000;
+$color1-3: #000000;
+$color1-4: #000000;
+$color1-5: #000000;
+
+
+$color2-1: #000000;
+$color2-2: #000000;
+$color2-3: #000000;
+$color2-4: #000000;
+$color2-5: #000000;
+
+
+$color3-1: #000000;
+$color3-2: #000000;
+$color3-3: #000000;
+$color3-4: #000000;
+$color3-5: #000000;
+
+
+$color4-1: #000000;
+$color4-2: #000000;
+$color4-3: #000000;
+$color4-4: #000000;
+$color4-5: #000000;
+
+$color5-1: #000000;
+$color5-2: #000000;
+$color5-3: #000000;
+$color5-4: #000000;
+$color5-5: #000000;
+
+$color6-1: #000000;
+$color6-2: #000000;
+$color6-3: #000000;
+$color6-4: #000000;
+$color6-5: #000000;
+
+
 
 $font-primary:  sans-serif;
 $font-second:  serif;
@@ -25,9 +62,38 @@ $breakpoint-mobile: $breakpoint-second;
 :root {
 
   --color1: #{$color1-1};
-  --color2: #{$color1-2};
-  --color3: #{$color1-3};
-  --color4: #{$color1-4};
+  --color12: #{$color1-2};
+  --color13: #{$color1-3};
+  --color14: #{$color1-4};
+  --color15: #{$color1-5};
+
+  --color2: #{$color2-1};
+
+
+  --color3: #{$color3-1};
+  --color32: #{$color3-2};
+  --color33: #{$color3-3};
+  --color34: #{$color3-4};
+  --color35: #{$color3-5};
+
+  --color4: #{$color4-1};
+  --color42: #{$color4-2};
+  --color43: #{$color4-3};
+  --color44: #{$color4-4};
+  --color45: #{$color4-5};
+
+  --color5: #{$color5-1};
+  --color52: #{$color5-2};
+  --color53: #{$color5-3};
+  --color54: #{$color5-4};
+  --color55: #{$color5-5};
+
+  --color6: #{$color6-1};
+  --color62: #{$color6-2};
+  --color63: #{$color6-3};
+  --color64: #{$color6-4};
+  --color65: #{$color6-5};
+
 
 
   --text-color-default: var(--color1);
