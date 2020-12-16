@@ -1,0 +1,6 @@
+@media(max-width: $breakpoint-mobile - 1) {
+  @import "navigation-mobile";
+}
+@media(min-width: $breakpoint-mobile) {
+  @import "navigation-mobile";
+}

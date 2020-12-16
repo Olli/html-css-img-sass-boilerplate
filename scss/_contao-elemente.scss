@@ -4,24 +4,24 @@
 .float_right {
   float: none;
   margin: 0px;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-v-2);
 }
 
 .image_container {
-  margin-top: 0.5rem;
+  margin-top: var(--space-v-05);
 }
 
 @media(min-width: $breakpoint-first) {
   .float_left {
     float: left;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
+    margin-right: var(--space-v-2);
+    margin-bottom: var(--space-v-2);
   }
 
   .float_right {
     float: right;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin-left: var(--space-v-2);
+    margin-bottom: var(--space-v-2);
   }
 }
 
@@ -45,7 +45,7 @@
 /* artikel */
 
 .mod_article {
-  padding: calc(var(--lh-factor) * 1rem) 1ch ;
+  padding: var(--space-v-1) 1ch ;
   padding-right: 1.5ch;
 }
 
@@ -55,7 +55,7 @@
     margin: 0 auto;
     .block {
       hyphens: auto;
-      margin-bottom: calc(var(--lh-factor) * 3rem);
+      margin-bottom: calc(var(--space-v-1) + var(--space-v-2));
     }
 
   }
@@ -68,12 +68,12 @@
 
   ol,
   ul {
-    padding-left: 2rem;
+    padding-left: var(--space-v-2);
     // braucht der IE EDGE sonst floaten die anstriche nicht
     overflow: hidden;
   }
   p {
-    margin-bottom: 0.8rem;
+    margin-bottom: var(--space-v-075);
   }
 }
 
