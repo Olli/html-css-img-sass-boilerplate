@@ -26,7 +26,8 @@ export function initScrollUpBtn() {
       document.getElementById("header").parentNode.insertBefore(observeable,document.getElementById("header"));
 
       let observer = new IntersectionObserver(entries => {
-        if (entries[0].boundingClientRect.y < 0) {
+        //if (entries[0].boundingClientRect.y < 0) {
+        if(!entries[0].isIntersecting){
           document.body.classList.add("not-top-anymore");
         } else {
           document.body.classList.remove("not-top-anymore");
