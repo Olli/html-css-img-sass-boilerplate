@@ -4,11 +4,11 @@ import { scrollTo } from './scrollTo.js';
 
 export function initScrollUpBtn() {
 
-    let isIE = /*@cc_on!@*/false || !!document.documentMode
+    const isIE = /*@cc_on!@*/false || !!document.documentMode
 
     // Der Button wird mit JavaScript erzeugt und vor dem Ende des body eingebunden.
 
-    let button = document.createElement('a');
+    const button = document.createElement('a');
     button.setAttribute('href','#');
     button.setAttribute('class','no-btn back-to-top trigger-btn');
     button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 10a10 10 0 1 1 20 0 10 10 0 0 1-20 0zm10 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm.7-10.54L14.25 11l-1.41 1.41L10 9.6l-2.83 2.8L5.76 11 10 6.76l.7.7z"/></svg>\
@@ -50,7 +50,14 @@ export function initScrollUpBtn() {
     /* if(!isIE) { */
       document.querySelector('.back-to-top').addEventListener('click',function(event){
           event.preventDefault();
-          scrollTo(document.querySelector('html,body'),800,'easeInOutQuad');
+    /* if(!isIE) { */
+      document.querySelector('.back-to-top').addEventListener('click',function(event){
+          event.preventDefault();
+          if(CSS.supports("scroll-behavior: smooth")) {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          } else {
+            scrollTo(document.querySelector('html,body'),800,'easeInOutQuad');
+          }
       });
     /* } */
 }
