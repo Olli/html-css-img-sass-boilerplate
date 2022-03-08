@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
      s.src = 'files/template/js/css-vars-ponyfill.min.js';
      document.getElementsByTagName('head')[0].appendChild(s);
   }
+  document.body.parentElement.classList.remove("no-js");
 
   baguetteBox.run('.ce_gallery, .ce_image a[data-lightbox], .ce_text a[data-lightbox] ', {
     animation: 'fadeIn',
