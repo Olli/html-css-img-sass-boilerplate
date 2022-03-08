@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
        gem 'guard'
        gem 'guard-autoupload'
-       gem 'autoprefixer-rails'
        gem 'libnotify'
        gem 'net-ssh'
        gem 'guard-webpack'

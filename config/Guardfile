@@ -10,24 +10,10 @@
             # you have to install sassc
             guard :shell do
               watch(%r{scss\/(.+)\.scss$}) do |file|
-                # `sassc -t compressed -l scss/sass/style.scss .upload/css/style.css` #extended css at the end ... need to be compressed in production
-                `sassc -l scss/style.scss .tmp/cssstyle.css` #extended css at the end ... need to be compressed in production
-                do_autoprefix(".tmp/cssstyle.css",".upload/css/style.css")
+                `/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css`
               end
             end
 
-            def do_autoprefix(infile,outfile)
-              incss = File.read(infile)
-              #cssfile = File.dirname(file) + File.basename(file)
-              File.open(outfile, 'w') { |io| io << AutoprefixerRails.process(incss,
-                                                                             browsers: ['> 1%', 'ie 10', 'last 2 version'],
-                                                                             supports: false,
-                                                                             grid: false) }
-
-
-              system( "echo 'Autoprefixer has processed " + infile + "'" )
-
-            end
 
 
             opts = {
