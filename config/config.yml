@@ -1,0 +1,23 @@
+# Protocol used to connect to remote host.
+# Possible values are :scp, :sftp and :ftp.
+# Of these :scp is the preferred one for
+# its stability.
+protocol: :ftp,
+ssl: true,
+
+
+host: "ftp.example.net",
+
+# port: 22,            # Uncomment this if you need to set port to
+# something else than default.
+
+user: "",
+password: "",
+local: "upload",
+
+remote: "serverpath/files/template",
+
+verbose: true,        	# if true you get all outputs
+quiet: false,           # if true outputs only on exceptions.
+remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
+scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css"
