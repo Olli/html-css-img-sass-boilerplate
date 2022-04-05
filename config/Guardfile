@@ -1,4 +1,4 @@
-            config = YAML.load(IO.read(File.expand_path('config.yml'))) rescue Errno::ENOENT; nil } || {}
+            config = YAML.load(IO.read(File.expand_path('config.yml'))) || {}
             default_config = {
                 # Protocol used to connect to remote host.
                 # Possible values are :scp, :sftp and :ftp.
