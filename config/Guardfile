@@ -1,4 +1,9 @@
+require "yaml"
 config = YAML.load(IO.read(File.expand_path('config/config.yml'))) || {}
+config.keys.each do |key|
+  config[(key.to_sym rescue key) || key] = config.delete(key)
+end
+
 default_config = {
     # Protocol used to connect to remote host.
     # Possible values are :scp, :sftp and :ftp.
@@ -24,12 +29,9 @@ default_config = {
     remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
     scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css"
 }
-config.merge(default_config)
+config = default_config.merge(config)
 
 #require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
-
-# Like usual, the Compass configuration path are relative to the :project_path
-# guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
 
 #guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
 #  watch(%r{scss\/(.+)\.scss$})
@@ -37,7 +39,7 @@ config.merge(default_config)
 # you have to install sassc
 guard :shell do
   watch(%r{scss\/(.+)\.scss$}) do |file|
-    system(config['scss_exec'])
+    system(config[:scss_exec])
   end
 end
 
