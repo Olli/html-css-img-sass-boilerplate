@@ -1,3 +1,4 @@
 contao-vorlage/
 upload/css
 Gemfile.lock
+config/config.yml
