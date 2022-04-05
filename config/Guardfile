@@ -9,7 +9,7 @@
             # you have to install sassc
             guard :shell do
               watch(%r{scss\/(.+)\.scss$}) do |file|
-                `/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css`
+                `/usr/local/bin/sass -s compressed scss/style.scss:upload/css/style.css`
               end
             end
 
@@ -31,7 +31,7 @@
 
                 user: "",
                 password: "",
-                local: ".upload",
+                local: "upload",
 
                 remote: "serverpath/files/template",
 
@@ -41,7 +41,7 @@
             }
 
             guard :autoupload, opts do
-              watch(/^\.upload\/(css|img|fonts|js)./)
+              watch(/^upload\/(css|img|fonts|js)./)
               ignore [#%r{^scss}, # sonst geht der upload nicht
                       %r{^config},
                       %r{^.gitkeep},
@@ -49,5 +49,5 @@
                       %r{^Gemfile}, #ignore the root guardfile
                      ]
             end
-            guard :webpack, colors: true, config: './config/webpack/development.config.js'
-	    #guard :webpack, colors: false, config: './config/webpack/production.config.js'
+            #guard :webpack, colors: true, config: './config/webpack/development.config.js'
+	          #guard :webpack, colors: false, config: './config/webpack/production.config.js'
