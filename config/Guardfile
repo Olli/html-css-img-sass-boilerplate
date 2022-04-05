@@ -1,58 +1,58 @@
-            config = YAML.load(IO.read(File.expand_path('config/config.yml'))) || {}
-            default_config = {
-                # Protocol used to connect to remote host.
-                # Possible values are :scp, :sftp and :ftp.
-                # Of these :scp is the preferred one for
-                # its stability.
-                protocol: :ftp,
-                ssl: true,
+config = YAML.load(IO.read(File.expand_path('config.yml'))) || {}
+default_config = {
+    # Protocol used to connect to remote host.
+    # Possible values are :scp, :sftp and :ftp.
+    # Of these :scp is the preferred one for
+    # its stability.
+    protocol: :ftp,
+    ssl: true,
 
 
-                host: "ftp.example.net",
+    host: "ftp.example.net",
 
-                # port: 22,            # Uncomment this if you need to set port to
-                # something else than default.
+    # port: 22,            # Uncomment this if you need to set port to
+    # something else than default.
 
-                user: "",
-                password: "",
-                local: "upload",
+    user: "",
+    password: "",
+    local: "upload",
 
-                remote: "serverpath/files/template",
+    remote: "serverpath/files/template",
 
-                verbose: true,        	# if true you get all outputs
-                quiet: false,           # if true outputs only on exceptions.
-                remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
-                scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css"
-            }
-            config.merge(default_config)
+    verbose: true,        	# if true you get all outputs
+    quiet: false,           # if true outputs only on exceptions.
+    remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
+    scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css"
+}
+config.merge(default_config)
 
-            #require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
+#require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
 
-            # Like usual, the Compass configuration path are relative to the :project_path
-            # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
+# Like usual, the Compass configuration path are relative to the :project_path
+# guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
 
-            #guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
-            #  watch(%r{scss\/(.+)\.scss$})
-            #end
-            # you have to install sassc
-            guard :shell do
-              watch(%r{scss\/(.+)\.scss$}) do |file|
-                system(config['scss_exec'])
-              end
-            end
-
-
+#guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
+#  watch(%r{scss\/(.+)\.scss$})
+#end
+# you have to install sassc
+guard :shell do
+  watch(%r{scss\/(.+)\.scss$}) do |file|
+    system(config['scss_exec'])
+  end
+end
 
 
 
-            guard :autoupload, config do
-              watch(/^\.upload\/(css|img|fonts|js)./)
-              ignore [#%r{^scss}, # sonst geht der upload nicht
-                      %r{^config},
-                      %r{^.gitkeep},
-                      %r{^Guardfile}, #ignore the root guardfile
-                      %r{^Gemfile}, #ignore the root guardfile
-                     ]
-            end
-            #guard :webpack, colors: true, config: './config/webpack/development.config.js'
-	          #guard :webpack, colors: false, config: './config/webpack/production.config.js'
+
+
+guard :autoupload, config do
+  watch(/^\.upload\/(css|img|fonts|js)./)
+  ignore [#%r{^scss}, # sonst geht der upload nicht
+          %r{^config},
+          %r{^.gitkeep},
+          %r{^Guardfile}, #ignore the root guardfile
+          %r{^Gemfile}, #ignore the root guardfile
+          ]
+end
+#guard :webpack, colors: true, config: './config/webpack/development.config.js'
+#guard :webpack, colors: false, config: './config/webpack/production.config.js'
