@@ -1,21 +1,5 @@
-            #require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
-
-            # Like usual, the Compass configuration path are relative to the :project_path
-            # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
-
-            #guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
-            #  watch(%r{scss\/(.+)\.scss$})
-            #end
-            # you have to install sassc
-            guard :shell do
-              watch(%r{scss\/(.+)\.scss$}) do |file|
-                `/usr/local/bin/sass -s compressed scss/style.scss:upload/css/style.css`
-              end
-            end
-
-
-
-            opts = {
+            config = YAML.load(IO.read(File.expand_path('config.yml'))) rescue Errno::ENOENT; nil } || {}
+            default_config = {
                 # Protocol used to connect to remote host.
                 # Possible values are :scp, :sftp and :ftp.
                 # Of these :scp is the preferred one for
@@ -37,11 +21,32 @@
 
                 verbose: true,        	# if true you get all outputs
                 quiet: false,           # if true outputs only on exceptions.
-                remote_delete: false    # delete the remote file if the local file is deleted (defaults to true)
+                remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
+                scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:.upload/css/style.css"
             }
+            config.merge(default_config)
 
-            guard :autoupload, opts do
-              watch(/^upload\/(css|img|fonts|js)./)
+            #require File.join(File.dirname(__FILE__), 'config/base64-sass.rb')
+
+            # Like usual, the Compass configuration path are relative to the :project_path
+            # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
+
+            #guard :compass, project_path: 'scss', working_path: 'scss', configuration_file: 'scss/config.rb' do
+            #  watch(%r{scss\/(.+)\.scss$})
+            #end
+            # you have to install sassc
+            guard :shell do
+              watch(%r{scss\/(.+)\.scss$}) do |file|
+                system(config['scss_exec'])
+              end
+            end
+
+
+
+
+
+            guard :autoupload, config do
+              watch(/^\.upload\/(css|img|fonts|js)./)
               ignore [#%r{^scss}, # sonst geht der upload nicht
                       %r{^config},
                       %r{^.gitkeep},
