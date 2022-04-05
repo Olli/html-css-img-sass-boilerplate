@@ -27,7 +27,8 @@ default_config = {
     verbose: true,        	# if true you get all outputs
     quiet: false,           # if true outputs only on exceptions.
     remote_delete: false,    # delete the remote file if the local file is deleted (defaults to true)
-    scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:upload/css/style.css"
+    scss_exec: "/usr/local/bin/sass -s compressed scss/style.scss:upload/css/style.css",
+    use_webpacker: false
 }
 config = default_config.merge(config)
 
@@ -38,11 +39,15 @@ config = default_config.merge(config)
 #end
 # you have to install sassc
 guard :shell do
-  watch(%r{scss\/(.+)\.scss$}) do |file|
+  watch(%r{scss\/(.+)\.scss$ }) do |file|
     system(config[:scss_exec])
   end
+  unless config[:use_webpacker]
+    watch(/js\-packs\/(.+)\.js$/) do |file|
+      system("cp #{file[0]} upload/js/")
+    end
+  end
 end
-
 
 
 
@@ -56,5 +61,7 @@ guard :autoupload, config do
           %r{^Gemfile}, #ignore the root guardfile
           ]
 end
-#guard :webpack, colors: true, config: './config/webpack/development.config.js'
-#guard :webpack, colors: false, config: './config/webpack/production.config.js'
+if config[:use_webpacker]
+  #guard :webpack, colors: true, config: './config/webpack/development.config.js'
+  #guard :webpack, colors: false, config: './config/webpack/production.config.js'
+end
