@@ -10,10 +10,13 @@ let isIE = /*@cc_on!@*/false || !!document.documentMode
 
 document.addEventListener("DOMContentLoaded", function(){
   'use strict';
-  if(!isIE){
     //toggleClass('.nav-trigger.nav-open-trigger','.nav-open .nav-trigger.nav-close-trigger');
     toggleClass('#header .nav-trigger','#header .nav-trigger');
   }
+  
+  toggleClass('#header .nav-trigger','#header .nav-trigger');
+  const navigationMenu = new InitNavigationMenu();
+
   // load ie11 css vars polyfill
   if(isIE) {
      let s = document.createElement('script');

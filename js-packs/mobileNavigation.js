@@ -57,7 +57,8 @@ export function toggleClass(openCtrlSelector, closeCtrlSelector) {
 
   function closeNav(event) {
     event.preventDefault();
-
+    const closeEvent = new Event('navigationMenuClosed');
+    document.dispatchEvent(closeEvent);
     setNavClose();
 
 
